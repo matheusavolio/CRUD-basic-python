@@ -7,6 +7,7 @@ productDict = {}
 
 continueProgram = True
 menu = None
+
 try:
     while continueProgram == True:
         try:
@@ -43,6 +44,7 @@ try:
                 priceProduct = float(input("Insert the price of product: R$"))
                 addProducts(idProduct, nameProduct, priceProduct)
                 print()
+                sleep(1)
 
         elif menu == 2:
             readProduct()

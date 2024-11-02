@@ -11,7 +11,7 @@ try:
     while continueProgram == True:
         try:
             menu = int(input("Choose one of the options below: \n"
-                "[0] - exit. Be careful,"
+                "[0] - exit: Be careful, "
                 "if you leave the program,"
                 "you will lose the product data \n"
                 "[1] - Create product\n" # Create
@@ -49,5 +49,12 @@ try:
 
         elif menu == 2:
             readProduct()
+
+        elif menu == 3:
+            searchId = int(input("Insert ID of the product that will be updated: "))
+            nameUpdated = str(input("Inser the new name of product: "))
+            priceUpdated = float(input("Insert the new price of product: R$"))
+            updateProduct(searchId, nameUpdated, priceUpdated)
+
 except Exception as e:
      print(f"{red}Erro! {e.__class__}{e.__cause__}{reset}")

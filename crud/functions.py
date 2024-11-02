@@ -16,5 +16,6 @@ def readProduct():
             f'Name of product: {product["Name"]}\n'
             f'Price of product: R${product["Price"]:.2f}'
             )
+            print()
             
 # def updateProduct():

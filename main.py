@@ -1,4 +1,4 @@
-from crud import *
+from crud.functions import *
 from time import sleep
 from colors import *
 
@@ -6,34 +6,35 @@ productList = []
 productDict = {}
 
 continueProgram = True
-menu = None
 
 try:
     while continueProgram == True:
         try:
             menu = int(input("Choose one of the options below: \n"
-            "[0] - exit. Be careful,"
-            "if you leave the program,"
-            "you will lose the product data \n"
-            "[1] - Create product\n" # Create
-            "[2] - Read products \n" # Read
-            "[3] - Edit products\n"  # Update
-            "[4] - Remove products\n"# Delete
-            "You option: "))
+                "[0] - exit. Be careful,"
+                "if you leave the program,"
+                "you will lose the product data \n"
+                "[1] - Create product\n" # Create
+                "[2] - Read products \n" # Read
+                "[3] - Edit products\n"  # Update
+                "[4] - Remove products\n"# Delete
+                "You option: "))
+            
             if menu not in [0, 1, 2, 3, 4]:
-                print("Invalid option! Please enter a number between 0 and 4.")
+                    print("Invalid option! Please enter a number between 0 and 4.")
         except ValueError:
-            print(f"{red}Error! Enter a valid number between 0 to 4{reset}")
+                print(f"{red}Error! Enter a valid number between 0 to 4{reset}")
         except KeyboardInterrupt:
-            print(f"{red}Error! Please enter a valid number.{reset}")
+                print(f"{red}Error! Please enter a valid number.{reset}")
         finally:
             sleep(1)
             print()
-        
+            
         if menu == 0:
             continueProgram = False
             print("Thank you!, come back often!")
             break
+
         elif menu == 1:
             quantityProducts = int(input("Number of products to register: "))
             for c in range (1, quantityProducts+1):
@@ -49,4 +50,4 @@ try:
         elif menu == 2:
             readProduct()
 except Exception as e:
-    print(f"{red}Erro!{e.__class__}{reset}")
+     print(f"{red}Erro! {e.__class__}{e.__cause__}{reset}")

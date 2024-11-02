@@ -30,31 +30,33 @@ try:
             sleep(1)
             print()
             
-        if menu == 0:
-            continueProgram = False
-            print("Thank you!, come back often!")
-            break
+        try:
+            if menu == 0:
+                continueProgram = False
+                print("Thank you!, come back often!")
+                break
 
-        elif menu == 1:
-            quantityProducts = int(input("Number of products to register: "))
-            for c in range (1, quantityProducts+1):
-                idProduct = c
-                print   ()
-                print(f"Enter product {c} data: ")
-                nameProduct = str(input("Insert the name of product: "))
-                priceProduct = float(input("Insert the price of product: R$"))
-                addProducts(idProduct, nameProduct, priceProduct)
-                print()
-                sleep(1)
+            elif menu == 1:
+                quantityProducts = int(input("Number of products to register: "))
+                for c in range (1, quantityProducts+1):
+                    idProduct = c
+                    print   ()
+                    print(f"Enter product {c} data: ")
+                    nameProduct = str(input("Insert the name of product: "))
+                    priceProduct = float(input("Insert the price of product: R$"))
+                    addProducts(idProduct, nameProduct, priceProduct)
+                    print()
+                    sleep(1)
 
-        elif menu == 2:
-            readProduct()
+            elif menu == 2:
+                readProduct()
 
-        elif menu == 3:
-            searchId = int(input("Insert ID of the product that will be updated: "))
-            nameUpdated = str(input("Inser the new name of product: "))
-            priceUpdated = float(input("Insert the new price of product: R$"))
-            updateProduct(searchId, nameUpdated, priceUpdated)
-
+            elif menu == 3:
+                searchId = int(input("Insert ID of the product that will be updated: "))
+                nameUpdated = str(input("Inser the new name of product: "))
+                priceUpdated = float(input("Insert the new price of product: R$"))
+                updateProduct(searchId, nameUpdated, priceUpdated)
+        except NameError as e:
+            print(f"{red}Error!{e.__cause__}{e.__class__}{reset}")
 except Exception as e:
-     print(f"{red}Erro! {e.__class__}{e.__cause__}{reset}")
+    print(f"{red}Erro! {e.__class__}{e.__cause__}{reset}")

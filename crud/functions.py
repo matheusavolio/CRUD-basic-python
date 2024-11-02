@@ -1,3 +1,4 @@
+from time import sleep
 productList = []
 productDict = {}
 
@@ -17,5 +18,12 @@ def readProduct():
             f'Price of product: R${product["Price"]:.2f}'
             )
             print()
+            sleep(1)
             
-# def updateProduct():
+def updateProduct(update, nameUpdate, priceUpdate):
+    for product in productList:
+        if product["Id"] == update: 
+            product["Name"] = nameUpdate
+            product["Price"] = priceUpdate
+        else:
+            print("Product Id not found.")

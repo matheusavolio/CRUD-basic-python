@@ -1,4 +1,4 @@
-from crud.functions import *
+from crudFunctions import *
 from time import sleep
 from colors import *
 
@@ -7,8 +7,8 @@ productDict = {}
 
 continueProgram = True
 
-try:
-    while continueProgram == True:
+
+while continueProgram == True:
         try:
             menu = int(input("Choose one of the options below: \n"
                 "[0] - exit: Be careful, "
@@ -30,7 +30,6 @@ try:
             sleep(1)
             print()
             
-        try:
             if menu == 0:
                 continueProgram = False
                 print("Thank you!, come back often!")
@@ -56,7 +55,7 @@ try:
                 nameUpdated = str(input("Inser the new name of product: "))
                 priceUpdated = float(input("Insert the new price of product: R$"))
                 updateProduct(searchId, nameUpdated, priceUpdated)
-        except NameError as e:
-            print(f"{red}Error!{e.__cause__}{e.__class__}{reset}")
-except Exception as e:
-    print(f"{red}Erro! {e.__class__}{e.__cause__}{reset}")
+
+            elif menu == 4:
+                productDeleted = int(input("Enter the product to be delete: "))
+                delProduct(productDeleted)

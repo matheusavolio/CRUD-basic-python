@@ -2,8 +2,6 @@ from crudFunctions import *
 from time import sleep
 from colors import *
 
-productList = []
-productDict = {}
 
 continueProgram = True
 
@@ -39,7 +37,7 @@ while continueProgram == True:
             quantityProducts = int(input("Number of products to register: "))
             for c in range (1, quantityProducts+1):
                 idProduct = c
-                print   ()
+                print ()
                 print(f"Enter product {c} data: ")
                 nameProduct = str(input("Insert the name of product: "))
                 priceProduct = float(input("Insert the price of product: R$"))
@@ -57,5 +55,8 @@ while continueProgram == True:
                 updateProduct(searchId, nameUpdated, priceUpdated)
 
     elif menu == 4:
-            productDeleted = int(input("Enter the product to be delete: "))
-            delProduct(productDeleted)
+            idDel = int(input("Enter the id product to be delete: "))
+            delProduct(idDel)
+
+    elif menu == 5:
+        print(len(productList))

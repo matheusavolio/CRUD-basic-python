@@ -5,6 +5,8 @@ from colors import *
 continueProgram = True
 menu = True
 
+# Owned by Matheus Avolio 
+
 while continueProgram == True:
     try:
         menu = int(input("Choose one of the options below: \n"

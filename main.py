@@ -2,7 +2,6 @@ from crudFunctions import *
 from time import sleep
 from colors import *
 
-
 continueProgram = True
 
 
@@ -12,10 +11,10 @@ while continueProgram == True:
                 "[0] - exit: Be careful, "
                 "if you leave the program,"
                 "you will lose the product data \n"
-                "[1] - Create product\n" # Create
-                "[2] - Read products \n" # Read
-                "[3] - Edit products\n"  # Update
-                "[4] - Remove products\n"# Delete
+                "[1] - New register\n" # Create
+                "[2] - Read registers \n" # Read
+                "[3] - Edit registers\n"  # Update
+                "[4] - Remove registers\n"# Delete
                 "You option: "))
             
         if menu not in [0, 1, 2, 3, 4]:
@@ -30,33 +29,36 @@ while continueProgram == True:
             
     if menu == 0:
         continueProgram = False
-        print("Thank you!, come back often!")
+        print(f"{red}Thank you!, come back often!{reset}")
         break
 
     elif menu == 1:
-            quantityProducts = int(input("Number of products to register: "))
-            for c in range (1, quantityProducts+1):
-                idProduct = c
+            quantityRegister = int(input("Number of products to register: "))
+            for c in range (1, quantityRegister+1):
+                newId = c
                 print ()
-                print(f"Enter product {c} data: ")
-                nameProduct = str(input("Insert the name of product: "))
-                priceProduct = float(input("Insert the price of product: R$"))
-                addProducts(idProduct, nameProduct, priceProduct)
+                print(f"Enter register {c} data: ")
+                newName = str(input("Insert you name: "))
+                newEmail = str(input("Insert you email: "))
+                newPassword = int(input("You password: "))
+                newRegister(newId, newName, newEmail, newPassword)
                 print()
                 sleep(1)
 
     elif menu == 2:
-                readProduct()
+                viewRegisters()
 
     elif menu == 3:
-                searchId = int(input("Insert ID of the product that will be updated: "))
-                nameUpdated = str(input("Inser the new name of product: "))
-                priceUpdated = float(input("Insert the new price of product: R$"))
-                updateProduct(searchId, nameUpdated, priceUpdated)
+                try:
+                    searchId = int(input("Insert ID of the product that will be updated: "))
+                    nameUpdated = str(input("Inser the new name: "))
+                    emailUpdate = str(input("Insert the new email: "))
+                    updatePassword = int(input("Insert you new password: "))
+                    uptadeRegister(searchId, nameUpdated, emailUpdate, updatePassword)
+                except (ValueError,KeyboardInterrupt, TypeError):
+                    print(f"{red}Error! Enter a valid number.{reset}")
+                
 
     elif menu == 4:
             idDel = int(input("Enter the id product to be delete: "))
-            delProduct(idDel)
-
-    elif menu == 5:
-        print(len(productList))
+            delRegister(idDel)

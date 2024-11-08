@@ -3,7 +3,7 @@ from time import sleep
 from colors import *
 
 continueProgram = True
-
+menu = True
 
 while continueProgram == True:
     try:
@@ -18,32 +18,39 @@ while continueProgram == True:
                 "You option: "))
             
         if menu not in [0, 1, 2, 3, 4]:
-            print("Invalid option! Please enter a number between 0 and 4.")
+            errorMessage("Invalid option! Please enter a number between 0 and 4.")
     except ValueError:
-        print(f"{red}Error! Enter a valid number between 0 to 4{reset}")
+        errorMessage("Error! Enter a valid number between 0 to 4")
     except KeyboardInterrupt:
-            print(f"{red}Error! Please enter a valid number.{reset}")
+            errorMessage("Error! Please enter a valid number.")
     finally:
-        sleep(1)
-        print()
+        formatting()
             
     if menu == 0:
         continueProgram = False
-        print(f"{red}Thank you!, come back often!{reset}")
+        sucessMessage("Thank you!, come back often!")
         break
 
     elif menu == 1:
-            quantityRegister = int(input("Number of products to register: "))
+            quantityRegister = 0
+            try:
+                quantityRegister = int(input("number of registrations to register: "))
+            except (ValueError, TypeError, KeyboardInterrupt):
+                errorMessage("Error! Please enter a valid number.")
+                formatting()
             for c in range (1, quantityRegister+1):
                 newId = c
-                print ()
-                print(f"Enter register {c} data: ")
-                newName = str(input("Insert you name: "))
-                newEmail = str(input("Insert you email: "))
-                newPassword = int(input("You password: "))
-                newRegister(newId, newName, newEmail, newPassword)
                 print()
-                sleep(1)
+                print(f"Enter register {c} data: ")
+                try:
+                    newName = str(input("Insert you name: "))
+                    newEmail = str(input("Insert you email: "))
+                    newPassword = int(input("You password: "))
+                except (TypeError, ValueError, KeyboardInterrupt):
+                    errorMessage("Error! Please enter a valid caractere.")
+                    formatting()
+                newRegister(newId, newName, newEmail, newPassword)
+                formatting()
 
     elif menu == 2:
                 viewRegisters()
@@ -56,9 +63,9 @@ while continueProgram == True:
                     updatePassword = int(input("Insert you new password: "))
                     uptadeRegister(searchId, nameUpdated, emailUpdate, updatePassword)
                 except (ValueError,KeyboardInterrupt, TypeError):
-                    print(f"{red}Error! Enter a valid number.{reset}")
+                    errorMessage("Error! Enter a valid number.")
                 
 
     elif menu == 4:
             idDel = int(input("Enter the id product to be delete: "))
-            delRegister(idDel)
+            deleteRegister(idDel)

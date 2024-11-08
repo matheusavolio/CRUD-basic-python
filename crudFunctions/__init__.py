@@ -3,6 +3,16 @@ from colors import *
 registerList = []
 registerDict = {}
 
+def formatting():
+    print()
+    sleep(0.5)
+
+def sucessMessage(message):
+    print(f"{green}{message}{reset}")
+
+def errorMessage(message):
+    print(f"{red}{message}{reset}")
+
 def newRegister(id, name, email, password):
         """
     Adds a new record to the `registerList` list.
@@ -28,10 +38,12 @@ def newRegister(id, name, email, password):
         newRegister(1, "João Silva", "joao@example.com", "123456")
         # Add a new record with Id=1, Name="João Silva", Email="joao@example.com" and Password="123456"
     """
-        registerDict = {"Id":id, "Name":name, "Email":email, "Password":password}
-        registerList.append(registerDict)
-
-        print(f"{green}Register added sucessfully!{reset}")
+        try:
+            registerDict = {"Id":id, "Name":name, "Email":email, "Password":password}
+            registerList.append(registerDict)
+            sucessMessage("Register added sucessfully!")
+        except Exception as e:
+            errorMessage(f"{e.__class__}")
         
 
 def viewRegisters():
@@ -62,44 +74,80 @@ def viewRegisters():
             None. The function only prints information on the screen.
         """
         if not registerList:
-            print(f"{red}Error! Record not found, add a record first.{reset}")
-            sleep(0.5)
+            errorMessage("Error! Record not found, add a record first.")
+            formatting()
         else:
+
             for register in registerList:
+                print(f"{blue}-=-=-=-=-=-=-=-=-=-=-=-=-={reset}")
                 print (
                 f'Id: {register["Id"]}\n'
                 f'Name: {register["Name"]}\n'
                 f'E-mail: {register["Email"]}\n'
                 f'Password: {register["Password"]}'
                 )
-                print()
-                sleep(0.5)
+                print(f"{blue}-=-=-=-=-=-=-=-=-=-=-=-=-={reset}")
+                formatting()
 
 
     
             
 def uptadeRegister(idFound, nameUpdate, emailUpdate, passwordUpdate):
+        """
+    Updates a user's information in the `registerList` by matching the provided ID.
+
+    This function loops through the `registerList` and searches for a record with the matching 
+    "Id". If a match is found, the corresponding "Name", "Email", and "Password" fields are 
+    updated with the new values provided. Once the update is successfully made, a success 
+    message is printed. If no matching ID is found, an error message is displayed.
+
+    Parameters:
+        idFound (int): The ID of the record to be updated.
+        nameUpdate (str): The new name to be set for the user.
+        emailUpdate (str): The new email to be set for the user.
+        passwordUpdate (str): The new password to be set for the user.
+
+    Return:
+        None. The function modifies the list `registerList` in place and prints messages.
+
+    Example usage:
+        updateRegister(1, "Jane Doe", "jane.doe@example.com", "12345")
+    """ 
         for register in registerList:
             if register["Id"] == idFound: 
                 register["Name"] = nameUpdate
                 register["Email"] = emailUpdate
                 register["Password"] = passwordUpdate
                 print(f"{green}Register updated successfully{reset}")
-                print()
-                sleep(1)
-            else:
-                print(f"{red}Error! Id not found.{reset}")
-                sleep(0.5)
-        return
+                formatting()
+                return
+        errorMessage("Error! Id not found.")
+        formatting
                 
 
-def delRegister(Id):
-            for register in registerList:
-                if register["Id"] == Id:
-                    registerList.remove(register)
-                    print(f"{green}Product removed sucessfully!{reset}")
-                    sleep(1)
-                    return
-                else:
-                    print(f"{red}Error! Id not found.{reset}")
+def deleteRegister(Id):
+    """
+    Removes a record from the `registerList` based on the provided ID.
+
+    This function searches for a record with the specified `Id` in the `registerList`.
+    If the record is found, it is removed. A success message is printed.
+    If the ID is not found, an error message is displayed.
+
+    Parameters:
+        Id (int): The ID of the record to be removed.
+
+    Return:
+        None. The function modifies the `registerList` in place and prints a message.
+
+    Example usage:
+        deleteRegister(1)
+        # Removes the record with Id=1 from the `registerList`
+    """
+    
+    for register in registerList:
+        if register["Id"] == Id:
+            registerList.remove(register)
+            print(f"{green}Product removed sucessfully!{reset}")
+            formatting()
             return
+    errorMessage("Error! Id not found.")
